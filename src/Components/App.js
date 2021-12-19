@@ -1,10 +1,14 @@
 import giphy from "../api/giphy";
 import React from "react";
 import SearchBar from "./SearchBar";
-import GifItem from "./GifItem";
+import GifDetail from "./GifDetail";
 
 class App extends React.Component {
-  state = { term: "" };
+  state = { term: "", gifs: [] };
+
+  componentDidMount() {
+    this.onTermSubmit("Yule log");
+  }
 
   onTermSubmit = async (term) => {
     const res = await giphy.get("/search", {
@@ -14,17 +18,20 @@ class App extends React.Component {
     });
 
     this.setState({
-      gifs: res,
+      gifs: res.data.data,
     });
   };
 
   render() {
-    console.log(this.state.term);
-
+    console.log(this.state.gifs)
     return (
       <div>
-        <SearchBar onFormSubmit={this.onTermSubmit} />
-        <GifItem />
+        <div>
+          <SearchBar onFormSubmit={this.onTermSubmit} />
+        </div>
+        <div>
+          <GifDetail gifs={this.state.gifs}/>
+        </div>
       </div>
     );
   }
