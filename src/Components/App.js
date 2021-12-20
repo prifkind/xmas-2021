@@ -4,11 +4,8 @@ import SearchBar from "./SearchBar";
 import GifDetail from "./GifDetail";
 
 class App extends React.Component {
-  state = { term: "", gifs: [] };
+  state = { term: "", gifs: [], selectedGif: null };
 
-  componentDidMount() {
-    this.onTermSubmit("Yule log");
-  }
 
   onTermSubmit = async (term) => {
     const res = await giphy.get("/search", {
@@ -19,18 +16,19 @@ class App extends React.Component {
 
     this.setState({
       gifs: res.data.data,
+      selectedGif: res.data.data[0].images.original,
     });
+    console.log(this.state.gifs);
   };
 
   render() {
-    console.log(this.state.gifs)
     return (
       <div>
         <div>
           <SearchBar onFormSubmit={this.onTermSubmit} />
         </div>
         <div>
-          <GifDetail gifs={this.state.gifs}/>
+          <GifDetail gifs={this.state.gifs} selectedGif={this.state.selectedGif} />
         </div>
       </div>
     );
