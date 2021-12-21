@@ -1,7 +1,7 @@
 import React from "react";
 
-const GifDetail = ({ gifs, selectedGifs }) => {
-  if (!selectedGifs) {
+const GifDetail = ({ gifs, selectedGif }) => {
+  if (!selectedGif) {
     return (
       <div>
         <div className="ui image">
@@ -12,11 +12,11 @@ const GifDetail = ({ gifs, selectedGifs }) => {
         </div>
       </div>
     );
-  }
+  } 
 
   return (
     <div>
-      <img src={selectedGifs} className="ui image" alt={gifs[0].id} />
+      <img src={selectedGif.images.original.url} className="ui image" alt={selectedGif.id} />
     </div>
   );
 };
