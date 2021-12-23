@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar";
 import GifDetail from "./GifDetail";
 import NextButton from "./NextButton";
 import BackButton from "./BackButton";
+import GifSelect from "./GifSelect";
 
 class App extends React.Component {
   state = { term: "", gifs: [], selectedGif: null };
@@ -36,6 +37,9 @@ class App extends React.Component {
       <div>
         <div>
           <SearchBar onFormSubmit={this.onTermSubmit} />
+        </div>
+        <div>
+          <GifSelect />
         </div>
         <div>
           <GifDetail
