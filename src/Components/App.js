@@ -26,7 +26,6 @@ class App extends React.Component {
   };
 
   onClickNext = () => {
-    // console.log(this.state.gifs.indexOf(this.state.selectedGif));
     let i = this.state.gifs.indexOf(this.state.selectedGif);
     if (i < this.state.gifs.length - 1) {
       i = i + 1;
@@ -67,4 +66,4 @@ class App extends React.Component {
 }
 
 export default App;
-//
+
